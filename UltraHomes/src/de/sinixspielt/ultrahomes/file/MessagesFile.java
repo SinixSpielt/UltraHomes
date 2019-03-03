@@ -1,8 +1,5 @@
 package de.sinixspielt.ultrahomes.file;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.configuration.file.FileConfiguration;
 
 import de.sinixspielt.ultrahomes.UltraHomes;
