@@ -16,6 +16,7 @@ public class ConfigFile extends FileBase {
 	private void writeDefaults() {
 		FileConfiguration cfg = getConfig();
 		cfg.addDefault("CONIG.ULTRAHOMES.PREFIX", "&8[&cUltraHomes&8]");
+		cfg.addDefault("CONIG.ULTRAHOMES.CANCELONMOVE", true);
 		cfg.addDefault("CONIG.ULTRAHOMES.NOTELEPORTDELAY", "ultrahomes.permissions.nodelay");
 		cfg.addDefault("CONIG.ULTRAHOMES.1.PERMISSIONS", "ultrahomes.permissions.homes.1");
 		cfg.addDefault("CONIG.ULTRAHOMES.1.HOMES", "1");
