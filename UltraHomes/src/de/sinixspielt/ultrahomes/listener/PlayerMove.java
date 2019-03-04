@@ -2,6 +2,7 @@ package de.sinixspielt.ultrahomes.listener;
 
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -10,17 +11,18 @@ import de.sinixspielt.ultrahomes.UltraHomes;
 
 public class PlayerMove implements Listener{
 	
-	@EventHandler
+	@EventHandler (priority = EventPriority.MONITOR)
 	public void onPlayerMove(PlayerMoveEvent e) {
-		if(!(UltraHomes.getFileManager().getConfigFile().getConfig().getBoolean("CONIG.ULTRAHOMES.CANCELONMOVE") == true)) {
+		if(UltraHomes.getFileManager().getConfigFile().getConfig().getBoolean("CONIG.ULTRAHOMES.CANCELONMOVE") == false) {
 			return;
-		}
-		Location from = e.getFrom();
-		Location to = e.getTo();
-		if(TeleportAPI.getTeleportManager().getTeleportDelays().containsKey(e.getPlayer())) {
-			if(hasLocationChanged(from, to)) {
-				TeleportAPI.getTeleportManager().getTeleportDelays().remove(e.getPlayer());
-			}	
+		}else {
+			Location from = e.getFrom();
+			Location to = e.getTo();
+			if(TeleportAPI.getTeleportManager().getTeleportDelays().containsKey(e.getPlayer())) {
+				if(hasLocationChanged(from, to)) {
+					TeleportAPI.getTeleportManager().getTeleportDelays().remove(e.getPlayer());
+				}	
+			}
 		}
 	}
 	

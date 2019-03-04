@@ -1,5 +1,8 @@
 package de.sinixspielt.ultrahomes.file;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.configuration.file.FileConfiguration;
 
 /*
@@ -31,6 +34,15 @@ public class ConfigFile extends FileBase {
 		cfg.addDefault("CONIG.ULTRAHOMES.6.PERMISSIONS", "ultrahomes.permissions.homes.20");
 		cfg.addDefault("CONIG.ULTRAHOMES.6.HOMES", 20);
 		cfg.addDefault("CONIG.ULTRAHOMES.UNLIMETED.PERMISSIONS", "ultrahomes.permissions.homes.unlimeted");
+		cfg.addDefault("CONIG.ULTRAHOMES.GUI.USEGUI", true);
+		cfg.addDefault("CONIG.ULTRAHOMES.GUI.TITLE", "&4Deine Homes!");
+		List<String> banscreen = new ArrayList<String>();
+		banscreen.add("&7Linksklick &8| &aTeleport");
+		banscreen.add("&7Rechtsklick &8| &cLöschen");
+		cfg.addDefault("CONIG.ULTRAHOMES.GUI.HOME.LORE", banscreen);
+		cfg.addDefault("CONIG.ULTRAHOMES.GUI.PAGE.NEXT", "&7Nächste Seite");
+		cfg.addDefault("CONIG.ULTRAHOMES.GUI.PAGE.LAST", "&7Vorherige Seite");
+		cfg.addDefault("CONIG.ULTRAHOMES.GUI.PAGE.NOAVAIBLE", "&cKeine Seite Verfügbar");
 		cfg.options().copyDefaults(true);
 		saveConfig();
 	}

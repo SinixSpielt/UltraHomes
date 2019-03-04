@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import de.sinixspielt.ultrahomes.commands.CommandHome;
 import de.sinixspielt.ultrahomes.file.FileManager;
+import de.sinixspielt.ultrahomes.gui.HomesInventoryClick;
 import de.sinixspielt.ultrahomes.listener.PlayerMove;
 import de.sinixspielt.ultrahomes.manager.PlayerDataManager;
 
@@ -25,6 +26,7 @@ public class UltraHomes extends JavaPlugin {
 		playerdataManager = new PlayerDataManager();
 		getCommand("home").setExecutor(new CommandHome());
 		Bukkit.getServer().getPluginManager().registerEvents(new PlayerMove(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new HomesInventoryClick(), this);
 	}
 	
 	@Override
