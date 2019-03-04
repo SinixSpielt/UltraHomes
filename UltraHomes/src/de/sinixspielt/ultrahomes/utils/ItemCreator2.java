@@ -12,9 +12,9 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
 
-public class ItemCreator {
+public class ItemCreator2 {
 	
-	private Material mat;
+	private int mat;
 	private Short data;
 	private Integer amount;
 	private String display;
@@ -22,10 +22,10 @@ public class ItemCreator {
 	private Map<Enchantment, Integer> enchantments = new HashMap();
 	private Potion potion;
 
-	public ItemCreator() {}
+	public ItemCreator2() {}
 
-	public ItemCreator(ItemStack item) {
-		this.mat = item.getType();
+	public ItemCreator2(ItemStack item) {
+		this.mat = item.getTypeId();
 		this.data = Short.valueOf(item.getDurability());
 		this.amount = Integer.valueOf(item.getAmount());
 		if (item.hasItemMeta()) {
@@ -41,37 +41,37 @@ public class ItemCreator {
 		}
 	}
 
-	public ItemCreator material(Material mat) {
+	public ItemCreator2 material(int mat) {
 		this.mat = mat;
 		return this;
 	}
 
-	public ItemCreator data(short data) {
+	public ItemCreator2 data(short data) {
 		this.data = Short.valueOf(data);
 		return this;
 	}
 
-	public ItemCreator amount(int amount) {
+	public ItemCreator2 amount(int amount) {
 		this.amount = Integer.valueOf(amount);
 		return this;
 	}
 
-	public ItemCreator displayName(String display) {
+	public ItemCreator2 displayName(String display) {
 		this.display = display;
 		return this;
 	}
 
-	public ItemCreator lore(List<String> lore) {
+	public ItemCreator2 lore(List<String> lore) {
 		this.lore = lore;
 		return this;
 	}
 
-	public ItemCreator addEnchant(Enchantment ench, int level) {
+	public ItemCreator2 addEnchant(Enchantment ench, int level) {
 		this.enchantments.put(ench, Integer.valueOf(level));
 		return this;
 	}
 
-	public ItemCreator removeEnchant(Enchantment ench) {
+	public ItemCreator2 removeEnchant(Enchantment ench) {
 		if (!this.enchantments.containsKey(ench)) {
 			return this;
 		}
@@ -79,7 +79,7 @@ public class ItemCreator {
 		return this;
 	}
 
-	public ItemCreator asPotion(PotionEffect effect, boolean splash) {
+	public ItemCreator2 asPotion(PotionEffect effect, boolean splash) {
 		Potion potion = new Potion(PotionType.getByEffect(effect.getType()));
 		potion.getEffects().add(effect);
 		potion.setLevel(effect.getAmplifier());
@@ -88,7 +88,7 @@ public class ItemCreator {
 		return this;
 	}
 
-	public Material getMaterial() {
+	public int getMaterial() {
 		return this.mat;
 	}
 
@@ -122,7 +122,7 @@ public class ItemCreator {
 
 	public ItemStack build() {
 		ItemStack item = null;
-		if ((this.mat == null) && (this.potion == null)) {
+		if ((this.mat == 0) && (this.potion == null)) {
 			return item;
 		}
 		if (this.data == null) {

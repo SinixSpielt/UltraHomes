@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -26,7 +25,6 @@ public class HomesInventoryClick implements Listener{
 		Player p = (Player) e.getWhoClicked();
 		Inventory inv = e.getInventory();
 		ItemStack item = e.getCurrentItem();
-
 		if (e.getHotbarButton() != -1) {
 			item = e.getView().getBottomInventory().getItem(e.getHotbarButton());
 			if (item == null) {
@@ -36,12 +34,34 @@ public class HomesInventoryClick implements Listener{
 		if ((item == null) || (item.getType() == Material.AIR)) {
 			return;
 		}
-		if(inv.getTitle().equals(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.GUI.TITLE").replace("&", "§"))) {
+		if(inv.getTitle().equals(UltraHomes.getFileManager().getGuiFile().getConfig().getString("GUI.ULTRAHOMES.TITLE").replace("&", "§"))) {
 			e.setCancelled(true);
 			if(e.getCurrentItem().getType() == Material.BARRIER) {
 				return;
 			}
-			if(e.getRawSlot() > 8 && e.getRawSlot() < 37) {
+			if(e.getRawSlot() == 45) {
+				if(HomesInventory.pages.get(p) == 0) {
+					p.sendMessage(getMessage("GUI.ULTRAHOMES.PAGE.NOAVAIBLE"));
+				}else {
+					int lastpage = HomesInventory.pages.get(p)+-1;
+					HomesInventory.pages.put(p, lastpage);
+					HomesInventory.openInventory(p, lastpage);
+				}
+			}
+			if(e.getRawSlot() == 53) {
+				PlayerData data = UltraHomes.getPlayerdataManager().getPlayerData(p.getUniqueId());
+				Map<String, Location> homes2 = data.getHomes();
+				List<String> homeList = new ArrayList<String>();
+				homeList.addAll(homes2.keySet());
+				if(homes2.size() > (HomesInventory.pages.get(p)+1)*27) {
+					int nextpage = HomesInventory.pages.get(p)+1;
+					HomesInventory.pages.put(p, nextpage);
+					HomesInventory.openInventory(p, nextpage);
+				}else {
+					p.sendMessage(getMessage("GUI.ULTRAHOMES.PAGE.NOAVAIBLE"));
+				}
+			}
+			if(e.getRawSlot() > 8 && e.getRawSlot() < 36) {
 				if(e.isLeftClick()) {
 					String homeName = e.getCurrentItem().getItemMeta().getDisplayName();
 					p.closeInventory();
@@ -100,5 +120,11 @@ public class HomesInventoryClick implements Listener{
 				}
 			}
 		}
+	}
+	
+	public static String getMessage(String path) {
+		String message = UltraHomes.getFileManager().getGuiFile().getConfig().getString(path);
+		message = message.replace("&", "§");
+		return message;
 	}
 }

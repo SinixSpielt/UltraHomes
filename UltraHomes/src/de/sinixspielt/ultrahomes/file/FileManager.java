@@ -8,10 +8,16 @@ public class FileManager {
 
 	private ConfigFile configFile;
 	private MessagesFile messagesFile;
+	private GuiFile guiFile;
 	
 	public FileManager() {
 		this.configFile = new ConfigFile();
 		this.messagesFile = new MessagesFile();
+		this.guiFile = new GuiFile();
+	}
+	
+	public GuiFile getGuiFile() {
+		return guiFile;
 	}
 	
 	public MessagesFile getMessagesFile() {

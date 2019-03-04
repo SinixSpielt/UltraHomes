@@ -3,11 +3,13 @@ package de.sinixspielt.ultrahomes.commands;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import de.sinixspielt.teleportapi.TeleportAPI;
 import de.sinixspielt.teleportapi.task.TPDelay;
 import de.sinixspielt.ultrahomes.UltraHomes;
@@ -68,7 +70,7 @@ public class CommandHome implements CommandExecutor {
 			}
 		}
 		if (label.equalsIgnoreCase("homes")) {
-			if(!(UltraHomes.getFileManager().getConfigFile().getConfig().getBoolean("CONIG.ULTRAHOMES.GUI.USEGUI") == true)) {
+			if(!(UltraHomes.getFileManager().getGuiFile().getConfig().getBoolean("GUI.ULTRAHOMES.USEGUI") == true)) {
 				PlayerData data = UltraHomes.getPlayerdataManager().getPlayerData(p.getUniqueId());
 				Map<String, Location> homes = data.getHomes();
 				if (homes.isEmpty()) {
@@ -86,7 +88,8 @@ public class CommandHome implements CommandExecutor {
 				String output = builder.substring(0, builder.length() - 2);
 				p.sendMessage(UltraHomes.getFileManager().getMessagesFile().getMessage("MESSAGES.ULTRAHOMES.COMMAND.HOMES.MESSAGE").replace("%HOMES%", output));	
 			}
-			HomesInventory.openInventory(p);
+			HomesInventory.openInventory(p, 0);
+			HomesInventory.pages.put(p, 0);
 		}
 		if (label.equalsIgnoreCase("sethome")) {
 			if (args.length != 1) {
