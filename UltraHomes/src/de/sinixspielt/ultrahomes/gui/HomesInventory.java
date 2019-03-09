@@ -50,6 +50,8 @@ public class HomesInventory {
 			homes.setItem(i, placeglasses);
 		}
 		
+		p.sendMessage("PERMISSION: " + UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.3.PERMISSIONS"));
+		
 		ArrayList<String> lore = new ArrayList<String>();
 		for(String lore2 : UltraHomes.getFileManager().getGuiFile().getConfig().getStringList("GUI.ULTRAHOMES.HOME.LORE")) {
 			lore2 = lore2.replace("&", "§");

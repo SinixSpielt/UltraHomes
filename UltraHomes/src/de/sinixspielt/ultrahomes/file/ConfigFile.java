@@ -31,6 +31,7 @@ public class ConfigFile extends FileBase {
 		cfg.addDefault("CONIG.ULTRAHOMES.6.PERMISSIONS", "ultrahomes.permissions.homes.20");
 		cfg.addDefault("CONIG.ULTRAHOMES.6.HOMES", 20);
 		cfg.addDefault("CONIG.ULTRAHOMES.UNLIMETED.PERMISSIONS", "ultrahomes.permissions.homes.unlimeted");
+		cfg.addDefault("CONIG.ULTRAHOMES.DEFAULT.HOMES", 1);
 		cfg.options().copyDefaults(true);
 		saveConfig();
 	}

@@ -25,10 +25,10 @@ public class PlayerData extends FileBase {
 	private int homeLimit;
 	
 	public PlayerData(UUID uuid) {
-
 		super(File.separator + "playerdata", uuid.toString());
 		this.uuid = uuid;
 		this.homes = new HashMap<String, Location>();
+		this.homeLimit = 0;
 		loadHomeLimit();
 		loadHomes();
 	}
@@ -38,20 +38,20 @@ public class PlayerData extends FileBase {
 		if (target != null) {
 			if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.UNLIMETED.PERMISSIONS"))) {
 				this.homeLimit = -1;
-			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.1.PERMISSIONS"))) {
-				this.homeLimit = UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.1.HOMES");
-			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.2.PERMISSIONS"))) {
-				this.homeLimit = UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.2.HOMES");
-			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.3.PERMISSIONS"))) {
-				this.homeLimit = UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.3.HOMES");
-			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.4.PERMISSIONS"))) {
-				this.homeLimit = UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.4.HOMES");
-			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.5.PERMISSIONS"))) {
-				this.homeLimit = UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.5.HOMES");
 			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.6.PERMISSIONS"))) {
-				this.homeLimit = UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.6.HOMES");
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.6.HOMES"));
+			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.5.PERMISSIONS"))) {
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.5.HOMES"));
+			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.4.PERMISSIONS"))) {
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.4.HOMES"));
+			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.3.PERMISSIONS"))) {
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.3.HOMES"));
+			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.2.PERMISSIONS"))) {
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.2.HOMES"));
+			} else if (target.hasPermission(UltraHomes.getFileManager().getConfigFile().getConfig().getString("CONIG.ULTRAHOMES.1.PERMISSIONS"))) {
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.1.HOMES"));
 			} else {
-				this.homeLimit = 1;
+				this.homeLimit = Integer.valueOf(UltraHomes.getFileManager().getConfigFile().getConfig().getInt("CONIG.ULTRAHOMES.DEFAULT.HOMES"));
 			}
 		}
 	}
