@@ -1,9 +1,0 @@
-name: UltraHomes
-version: 1.0.5
-author: Sinixspielt
-
-main: de.sinixspielt.ultrahomes.UltraHomes
-commands:
-  home:
-    description: Home Maincommand
-    aliases: [homes,sethome,delhome]
