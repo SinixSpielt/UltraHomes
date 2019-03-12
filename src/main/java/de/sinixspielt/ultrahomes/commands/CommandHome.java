@@ -47,6 +47,7 @@ public class CommandHome implements CommandExecutor {
 				p.sendMessage(UltraHomes.getFileManager().getMessagesFile().getMessage("MESSAGES.ULTRAHOMES.TELEPORT.TELEPORTFINISH").replace("%HOME%", args[0]));
 			} else {
 				p.sendMessage(UltraHomes.getFileManager().getMessagesFile().getMessage("MESSAGES.ULTRAHOMES.TELEPORT.TELEPORTNOW"));
+
 				TPDelay delay = new TPDelay(p, 0, 5, 12) {
 					public void onTick() {
 						if(!TeleportAPI.getTeleportManager().getTeleportDelays().containsKey(p)) {
